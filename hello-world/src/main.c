@@ -1,18 +1,31 @@
+/*
+ * Main.
+ */
+
 #include <genesis.h>
-int main()
-{
 
- VDP_drawText("Hello Genny World!", 10, 13);
+void inputHandler(u16 joy, u16 changed, u16 state) {
 
-	while(1)
-	{
-		//read input
-		//move sprite
-		//update score
-		//draw current screen (logo, start screen, settings, game, gameover, credits...)
+	if (joy == JOY_1) {
+		if (state & BUTTON_START) {
+			//player 1 press START button
+		} else if (changed & BUTTON_START) {
+			//player 1 released START button
+		}
+	}
+}
 
-		//wait for screen refresh
+int main() {
+
+	JOY_init();
+	JOY_setEventHandler(&inputHandler);
+
+	VDP_drawText("Hello Genny World!", 10, 13);
+
+	while (1) {
+
 		VDP_waitVSync();
 	}
+
 	return (0);
 }
