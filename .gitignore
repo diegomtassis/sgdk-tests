@@ -3,3 +3,4 @@ hello-world/src/boot/
 sgdk-samples/src/boot/
 sgdk-template-project/src/boot/rom_head.c
 sgdk-template-project/src/boot/
+sgdk-samples/out/
