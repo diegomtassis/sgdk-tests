@@ -5,44 +5,54 @@
  *      Author: diegomtassis
  */
 
-#include <genesis.h>
+#include <input-handling.h>
 
-void logButtonStatus(const char *str, const char *isPushed, u16 x, u16 y);
+#include <joy.h>
+
+#include "text-handling.h"
+
+void logButtonStatus(const char *buttonId, const char *isPushed, u16 x, u16 y);
 
 void inputHandler(u16 joy, u16 changed, u16 state) {
 
-	logInputButton(joy, BUTTON_START, changed, state, "S", 5, 12);
+	int yTop = 10;
+	int xFirstColumn = 5;
+	int xSecondColumn = 20;
 
-	logInputButton(joy, BUTTON_A, changed, state, "A", 5, 14);
-	logInputButton(joy, BUTTON_B, changed, state, "B", 5, 15);
-	logInputButton(joy, BUTTON_C, changed, state, "C", 5, 16);
+	logInputButton(joy, BUTTON_START, changed, state, "Button Start", xFirstColumn, yTop);
 
-	logInputButton(joy, BUTTON_X, changed, state, "X", 5, 18);
-	logInputButton(joy, BUTTON_Y, changed, state, "Y", 5, 19);
-	logInputButton(joy, BUTTON_Z, changed, state, "Z", 5, 20);
+	logInputButton(joy, BUTTON_UP, changed, state, "D-Pad Up", xFirstColumn, yTop + 2);
+	logInputButton(joy, BUTTON_DOWN, changed, state, "D-Pad Down", xFirstColumn, yTop + 3);
+	logInputButton(joy, BUTTON_LEFT, changed, state, "D-Pad Left", xFirstColumn, yTop + 4);
+	logInputButton(joy, BUTTON_RIGHT, changed, state, "D-Pad Right", xFirstColumn, yTop + 5);
 
-	logInputButton(joy, BUTTON_UP, changed, state, "U", 5, 22);
-	logInputButton(joy, BUTTON_DOWN, changed, state, "D", 5, 23);
-	logInputButton(joy, BUTTON_LEFT, changed, state, "L", 5, 24);
-	logInputButton(joy, BUTTON_RIGHT, changed, state, "R", 5, 25);
+	logInputButton(joy, BUTTON_A, changed, state, "Button A", xFirstColumn, yTop + 7);
+	logInputButton(joy, BUTTON_B, changed, state, "Button B", xFirstColumn, yTop + 8);
+	logInputButton(joy, BUTTON_C, changed, state, "Button C", xFirstColumn, yTop + 9);
+
+	logInputButton(joy, BUTTON_X, changed, state, "Button X", xSecondColumn, yTop + 7);
+	logInputButton(joy, BUTTON_Y, changed, state, "Button Y", xSecondColumn, yTop + 8);
+	logInputButton(joy, BUTTON_Z, changed, state, "Button Z", xSecondColumn, yTop + 9);
 }
 
-void logInputButton(u16 joy, u16 button, u16 changed, u16 state, const char *str, u16 x, u16 y) {
+void logInputButton(u16 joy, u16 button, u16 changed, u16 state, const char *buttonName, u16 x, u16 y) {
 
 	if (joy == JOY_1) {
 
 		if (state & button) {
-			logButtonStatus(str, "1", x, y);
+			logButtonStatus(buttonName, " 1", x, y);
 
 		} else if (changed & button) {
-			logButtonStatus(str, "0", x, y);
+			logButtonStatus(buttonName, " 0", x, y);
 		}
 	}
 }
 
-void logButtonStatus(const char *str, const char *isPushed, u16 x, u16 y) {
+void logButtonStatus(const char *buttonName, const char *isPushed, u16 x, u16 y) {
 
-	char buf[strlen(str) + 3];
-	strcat(strcat(buf, str), isPushed);
-	VDP_drawText(buf, x, y);
+	u16 xOffset = x;
+	u16 yOffset = y;
+
+	appendAndDrawText(buttonName, &xOffset, &yOffset);
+	appendAndDrawText(isPushed, &xOffset, &yOffset);
 }
