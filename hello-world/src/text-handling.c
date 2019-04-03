@@ -8,10 +8,15 @@
 #include <text-handling.h>
 
 #include <string.h>
-#include <types.h>
 #include <vdp_bg.h>
 
 void appendAndDrawText(const char *text, u16 *xOffset, u16 *yOffset) {
+
+	const char *left = text;
+
+//	while (strlen(left) > 0) {
+//		VDP_drawText(text, *xOffset, *yOffset);
+//	}
 
 	VDP_drawText(text, *xOffset, *yOffset);
 	*xOffset += strlen(text);

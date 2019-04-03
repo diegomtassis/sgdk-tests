@@ -15,9 +15,9 @@ void logButtonStatus(const char *buttonId, const char *isPushed, u16 x, u16 y);
 
 void inputHandler(u16 joy, u16 changed, u16 state) {
 
-	int yTop = 10;
-	int xFirstColumn = 5;
-	int xSecondColumn = 20;
+	u16 yTop = 10;
+	u16 xFirstColumn = 5;
+	u16 xSecondColumn = 20;
 
 	logInputButton(joy, BUTTON_START, changed, state, "Button Start", xFirstColumn, yTop);
 

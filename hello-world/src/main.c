@@ -2,37 +2,50 @@
  * Main.
  */
 
-#include <genesis.h>
+#include <dma.h>
+#include <string.h>
+#include <types.h>
+#include <vdp.h>
+#include <vdp_bg.h>
+#include <vdp_pal.h>
+#include <vdp_tile.h>
 
-#include "../inc/input-handling.h"
+#include "../inc/text-handling.h"
 #include "../res/resources.h"
 
 #define TILE1	1
 
 int main() {
 
-	JOY_init();
-	JOY_setEventHandler(&inputHandler);
+	VDP_setTextPlan(PLAN_A);
+	VDP_setTextPriority(1);
 
-	VDP_drawText("Hello Genny World!", 10, 5);
+	VDP_drawText("SGDK tutorial", 1, 1);
+	VDP_drawText("BG image", 1, 2);
+
+	u16 xPos = 1, yPos = 3;
+	appendAndDrawText("Moon in different positions", &xPos, &yPos);
+
+	xPos = 1, yPos = 1 + yPos;
+	appendAndDrawText("Moon size: (", &xPos, &yPos);
+
+	char w[2];
+	sprintf(w, "%d", moon.map->w);
+
+	char h[2];
+	sprintf(h, "%d", moon.map->h);
+
+	appendAndDrawText(w, &xPos, &yPos);
+	appendAndDrawText("x", &xPos, &yPos);
+	appendAndDrawText(h, &xPos, &yPos);
+	appendAndDrawText(")", &xPos, &yPos);
 
 	// Moon
-	VDP_setPalette(PAL1, moon.palette->data);
-	VDP_drawImageEx(PLAN_A, &moon, TILE_ATTR_FULL(PAL1, 0, 0, 0, 1), 12, 12, 0, CPU);
-
-
-	// Platform
-	VDP_loadTileData(platform.tiles, 1, 3, 0);
-
-	int minX = 5;
-	int maxX = 30;
-	int y = 25;
-
-	VDP_setTileMapXY(PLAN_A, TILE_ATTR_FULL(PAL2, 1, 0, 0, 1), minX, y);
-	for (int var = 1; var < maxX; ++var) {
-		VDP_setTileMapXY(PLAN_A, TILE_ATTR_FULL(PAL2, 1, 0, 0, 2), minX + var, y);
-	}
-	VDP_setTileMapXY(PLAN_A, TILE_ATTR_FULL(PAL2, 1, 0, 0, 3), minX + maxX, y);
+	VDP_setPalette(PAL0, moon.palette->data);
+	VDP_drawImageEx(PLAN_A, &moon, TILE_ATTR_FULL(PAL0, 0, 0, 0, 1), 1, 10, 0, CPU);
+	VDP_drawImageEx(PLAN_A, &moon, TILE_ATTR_FULL(PAL1, 0, 1, 0, 1), 10, 10, 0, CPU);
+	VDP_drawImageEx(PLAN_A, &moon, TILE_ATTR_FULL(PAL2, 0, 0, 1, 1), 19, 10, 0, CPU);
+	VDP_drawImageEx(PLAN_A, &moon, TILE_ATTR_FULL(PAL3, 0, 1, 1, 1), 28, 10, 0, CPU);
 
 	while (1) {
 
