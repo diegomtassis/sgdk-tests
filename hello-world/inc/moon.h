@@ -5,11 +5,9 @@
  *      Author: diegomtassis
  */
 
-#ifndef INC_MOON_H_
-#define INC_MOON_H_
-
-#define TILE1	1
+#ifndef _MOON_H_
+#define _MOON_H_
 
 void drawMoon();
 
-#endif /* INC_MOON_H_ */
+#endif /* MOON_H_ */

@@ -5,11 +5,11 @@
  *      Author: diegomtassis
  */
 
-#include <input-handling.h>
+#include "../inc/input_handling.h"
 
 #include <joy.h>
 
-#include "text-handling.h"
+#include "../inc/text_handling.h"
 
 void logButtonStatus(const char *buttonId, const char *isPushed, u16 x, u16 y);
 

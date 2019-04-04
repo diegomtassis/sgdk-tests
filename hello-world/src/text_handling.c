@@ -5,9 +5,10 @@
  *      Author: diegomtassis
  */
 
-#include <text-handling.h>
+#include "../inc/text_handling.h"
 
 #include <string.h>
+#include <types.h>
 #include <vdp_bg.h>
 
 void appendAndDrawText(const char *text, u16 *xOffset, u16 *yOffset) {

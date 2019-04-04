@@ -11,7 +11,9 @@
 
 int main() {
 
-	drawMoon();
+	// drawMoon();
+
+	BG_drawDummyTile();
 
 	while (1) {
 

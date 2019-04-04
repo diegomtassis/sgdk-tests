@@ -15,10 +15,12 @@
 #include <vdp_pal.h>
 #include <vdp_tile.h>
 
-#include "../inc/text-handling.h"
+#include "../inc/text_handling.h"
 #include "../res/resources.h"
 
-void printHeader();
+#define TILE1	1
+
+void printHeader_Moon();
 
 void drawMoon() {
 
@@ -26,7 +28,7 @@ void drawMoon() {
 	VDP_setTextPlan(PLAN_A);
 
 	// header
-	printHeader();
+	printHeader_Moon();
 
 	// draw 4 moons, different palettes and flipped
 	VDP_setPalette(PAL0, moon.palette->data);
@@ -36,7 +38,7 @@ void drawMoon() {
 	VDP_drawImageEx(PLAN_A, &moon, TILE_ATTR_FULL(PAL3, 0, 1, 1, TILE1), 28, 10, 0, CPU);
 }
 
-void printHeader() {
+void printHeader_Moon() {
 
 	VDP_setTextPriority(1);
 
