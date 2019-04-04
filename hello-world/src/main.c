@@ -5,7 +5,7 @@
  *      Author: diegomtassis
  */
 
-#include <vdp.h>
+#include <genesis.h>
 
 #include "../inc/moon.h"
 

@@ -5,7 +5,7 @@
  *      Author: diegomtassis
  */
 
-#include <moon.h>
+#include "../inc/moon.h"
 
 #include <dma.h>
 #include <string.h>
