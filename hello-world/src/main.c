@@ -13,7 +13,9 @@ int main() {
 
 	// drawMoon();
 
-	BG_drawDummyTile();
+	// BG_drawDummyTile();
+
+	drawSprite();
 
 	while (1) {
 

@@ -18,7 +18,7 @@
 #include "../inc/text_handling.h"
 #include "../res/resources.h"
 
-#define TILE1	1
+#define TILE_1	1
 
 void printHeader_Moon();
 
@@ -32,10 +32,10 @@ void drawMoon() {
 
 	// draw 4 moons, different palettes and flipped
 	VDP_setPalette(PAL0, moon.palette->data);
-	VDP_drawImageEx(PLAN_A, &moon, TILE_ATTR_FULL(PAL0, 0, 0, 0, TILE1), 1, 10, 0, CPU);
-	VDP_drawImageEx(PLAN_A, &moon, TILE_ATTR_FULL(PAL1, 0, 1, 0, TILE1), 10, 10, 0, CPU);
-	VDP_drawImageEx(PLAN_A, &moon, TILE_ATTR_FULL(PAL2, 0, 0, 1, TILE1), 19, 10, 0, CPU);
-	VDP_drawImageEx(PLAN_A, &moon, TILE_ATTR_FULL(PAL3, 0, 1, 1, TILE1), 28, 10, 0, CPU);
+	VDP_drawImageEx(PLAN_A, &moon, TILE_ATTR_FULL(PAL0, 0, 0, 0, TILE_1), 1, 10, 0, CPU);
+	VDP_drawImageEx(PLAN_A, &moon, TILE_ATTR_FULL(PAL1, 0, 1, 0, TILE_1), 10, 10, 0, CPU);
+	VDP_drawImageEx(PLAN_A, &moon, TILE_ATTR_FULL(PAL2, 0, 0, 1, TILE_1), 19, 10, 0, CPU);
+	VDP_drawImageEx(PLAN_A, &moon, TILE_ATTR_FULL(PAL3, 0, 1, 1, TILE_1), 28, 10, 0, CPU);
 }
 
 void printHeader_Moon() {
